@@ -1,7 +1,7 @@
 # csv-write-stream
 
 - ### Intro  
-   **line-reader** is a ES6 Generator function which returns an iterable to iterater over lines in a file one by one using `.next()` method.
+   **line-reader** is a ES6 Generator function which returns an iterable to iterater over lines in a file one by one using `.next()` method or `for..of` loop.
 
 - ### Install  
    `npm install git+https://github.com/Vikasg7/line-reader.git`  
@@ -16,7 +16,7 @@
    // Call list.next to iterate over lines in a file
    list.next()
 
-   // Iterating using a loop
+   // Iterating using a for..of loop
    for (const item of list) {
       console.log(item)
    }
