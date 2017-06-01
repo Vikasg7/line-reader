@@ -1,4 +1,4 @@
-# csv-write-stream
+# line-reader
 
 - ### Intro  
    **line-reader** is a ES6 Generator function which returns an iterable to iterater over lines in a file one by one using `.next()` method or `for..of` loop.
