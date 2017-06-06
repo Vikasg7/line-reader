@@ -1,8 +1,18 @@
-import { LineReader } from "../index"
-import { resolve as PathResolve} from "path"
+/*
+Command line usage:
+   cat "file1" "file2" | node dist/tests/test.js
+   echo "some text" | node dist/tests/test.js
+   node dist/tests/test.js < "file"
+*/
 
-for (const line of LineReader(process.argv[2])) {
+import { LineReader } from "../index"
+
+const arg = process.argv[2]
+
+const filePathOrStdin = arg ? arg : process.stdin
+
+for (const line of LineReader(filePathOrStdin)) {
    console.log(line)
 }
 
-console.log([...LineReader(process.argv[2])])
+console.log([...LineReader(filePathOrStdin)])

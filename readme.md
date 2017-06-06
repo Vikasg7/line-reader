@@ -1,7 +1,7 @@
 # line-reader
 
 - ### Intro  
-   **line-reader** is a ES6 Generator function which returns an iterable to iterater over lines in a file one by one using `.next()` method or `for..of` loop.
+   **line-reader** is a ES6 Generator function which returns an iterable to iterater over lines in a `file` or `stdin` one by one using `.next()` method or `for..of` loop.
 
 - ### Install  
    `npm install git+https://github.com/Vikasg7/line-reader.git`  
@@ -11,7 +11,8 @@
    import { LineReader } from "line-reader"
 
    // FromLine and ToLine are optional arguments
-   const list = LineReader("path-to-file.txt", FromLine, ToLine)
+   const filePathOrStdin = "path-to-file.txt" || process.stdin
+   const list = LineReader(filePathOrStdin, FromLine, ToLine)
 
    // Call list.next to iterate over lines in a file
    list.next()
