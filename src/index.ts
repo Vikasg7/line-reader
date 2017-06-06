@@ -2,7 +2,7 @@
 
 import { openSync, readSync, closeSync } from "fs"
 
-export function *LineReader(filePathOrStdin: string | NodeJS.Socket, fromLine = 0, toLine = Infinity): IterableIterator<string> {
+export function *LineReader(filePathOrStdin: string | (typeof process.stdin), fromLine = 0, toLine = Infinity): IterableIterator<string> {
    let fd
    if (typeof filePathOrStdin === "string") 
       fd = openSync(filePathOrStdin, "r") 
