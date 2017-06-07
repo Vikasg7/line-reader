@@ -2,7 +2,11 @@
 
 import { openSync, readSync, closeSync } from "fs"
 
-export function *LineReader(filePathOrStdin: string | (typeof process.stdin), fromLine = 0, toLine = Infinity): IterableIterator<string> {
+export function *LineReader(filePathOrStdin: string | (typeof process.stdin), 
+                            fromLine = 0, 
+                            toLine = Infinity,
+                            chunkSizeInBytes = 64 * 1024
+                            ): IterableIterator<string> {
    let fd
    if (typeof filePathOrStdin === "string") 
       fd = openSync(filePathOrStdin, "r") 
@@ -11,17 +15,16 @@ export function *LineReader(filePathOrStdin: string | (typeof process.stdin), fr
    else 
       throw "Invalid Argument: 1st argument must be a valid file path or process.stdin"
 
-   const defaultChunkSize = 64 * 1024
    let lastLine: string
 
    let position = 0
    let lineNum = 0
    while (true) {
-      const buf = new Buffer(defaultChunkSize)
+      const buf = new Buffer(chunkSizeInBytes)
       let bytesLen
       // try catch block has no performance penalty
       try {
-         bytesLen = readSync(fd, buf, 0, defaultChunkSize, position)
+         bytesLen = readSync(fd, buf, 0, chunkSizeInBytes, position)
       } catch (e) {
          // Not sure why I am getting Error: EOF: end of file, read
          // when I do 'cat "somefile" | node dist/tests/test.js.' OR

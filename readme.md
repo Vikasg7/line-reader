@@ -12,7 +12,11 @@
 
    // FromLine and ToLine are optional arguments
    const filePathOrStdin = "path-to-file.txt" || process.stdin
-   const list = LineReader(filePathOrStdin, FromLine, ToLine)
+   const FromLine: number = 1 // default is 0
+   const ToLine: number = 5 // default is Infinity
+   const chunkSizeInBytes = 8 * 1024 // default is 64 * 1024
+   
+   const list: IterableIterator<string> = LineReader(filePathOrStdin, FromLine, ToLine, chunkSizeInBytes)
 
    // Call list.next to iterate over lines in a file
    list.next()
