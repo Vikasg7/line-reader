@@ -2,11 +2,7 @@
 
 import { openSync, readSync, closeSync } from "fs"
 
-export function *LineReader(filePathOrStdin: string | (typeof process.stdin), 
-                            fromLine = 0, 
-                            toLine = Infinity,
-                            chunkSizeInBytes = 64 * 1024
-                            ): IterableIterator<string> {
+export function *LineReader(filePathOrStdin: string | (typeof process.stdin), fromLine = 0, toLine = Infinity, chunkSizeInBytes = 64 * 1024): IterableIterator<string> {
    let fd
    if (typeof filePathOrStdin === "string") 
       fd = openSync(filePathOrStdin, "r") 
