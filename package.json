@@ -17,9 +17,9 @@
   "author": "Vikas Gautam <v33vikasgautam@gmail.com> (http://mytrikks.blogspot.com)",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "latest"
   },
   "dependencies": {
+    "typescript": "latest",
     "@types/graceful-fs": "latest",
     "graceful-fs": "latest"
   }
