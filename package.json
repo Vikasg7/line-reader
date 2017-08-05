@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "install": "node_modules/.bin/tsc"
+    "install": "node_modules/.bin/tsc",
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",

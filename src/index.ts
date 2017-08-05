@@ -1,13 +1,15 @@
 /// <reference path="index.d.ts" />
 
-import { openSync, readSync, closeSync } from "fs"
+import { openSync, readSync, closeSync } from "graceful-fs"
 
-export function *LineReader(filePathOrStdin: string | (typeof process.stdin), fromLine = 0, toLine = Infinity, chunkSizeInBytes = 64 * 1024): IterableIterator<string> {
+export function *LineReader(fileOrStdinOrFd: string | (typeof process.stdin) | number, fromLine = 0, toLine = Infinity, chunkSizeInBytes = 64 * 1024): IterableIterator<string> {
    let fd
-   if (typeof filePathOrStdin === "string") 
-      fd = openSync(filePathOrStdin, "r") 
-   else if (filePathOrStdin.fd !== undefined)
-      fd = filePathOrStdin.fd
+   if (typeof fileOrStdinOrFd === "string") 
+      fd = openSync(fileOrStdinOrFd, "r") 
+   else if (typeof fileOrStdinOrFd === "number")
+      fd = fileOrStdinOrFd
+   else if (fileOrStdinOrFd.fd !== undefined)
+      fd = fileOrStdinOrFd.fd
    else 
       throw "Invalid Argument: 1st argument must be a valid file path or process.stdin"
 
