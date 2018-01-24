@@ -1,11 +1,10 @@
 {
   "name": "line-reader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Nodejs *Generator function to read a file line by line",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "install": "node_modules/.bin/tsc",
     "watch": "tsc -w"
   },
   "repository": {

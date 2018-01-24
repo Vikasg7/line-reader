@@ -37,7 +37,7 @@ export function *LineReader(fileOrStdinOrFd: string | (typeof process.stdin) | n
 
       if (!bytesLen) break
 
-      const lines = [lastLine, buf.toString("UTF-8", 0, bytesLen)].join("").split(/\r?\n|\r(?!\n)/)
+      const lines = [lastLine, buf.toString("binary", 0, bytesLen)].join("").split(/\r?\n|\r(?!\n)/)
       lastLine = lines.pop()
       if (lines.length) {
          for (const line of lines) {
